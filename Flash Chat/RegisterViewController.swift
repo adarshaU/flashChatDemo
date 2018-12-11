@@ -35,14 +35,21 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (result, error) in
             
             if error != nil{
-                print(error?.localizedDescription)
+                
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 
             }else{
                 print("Reg sucess")
+                self.performSegue(withIdentifier: "goToChat", sender: self)
             }
             
         }
-     } 
+     }
     
     
 }
