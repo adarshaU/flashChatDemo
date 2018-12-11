@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 
 class RegisterViewController: UIViewController {
@@ -32,8 +33,10 @@ class RegisterViewController: UIViewController {
         
         //TODO: Set up a new user on our Firbase database
         
+        SVProgressHUD.show()
+        
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (result, error) in
-            
+            SVProgressHUD.dismiss()
             if error != nil{
                 
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
